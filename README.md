@@ -1,4 +1,4 @@
-# Nominatorx by lkaD4
+# Nominatorx by lkAD4
 proyectto de un generador de nominas
 
 ## Guia
