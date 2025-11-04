@@ -2,9 +2,9 @@ package models;
 
 
 public class Departament {
-    private int salarioDia;
+    private int salarioDia;//Salario total por dia
     private String d_Nombre;
-    private int h_Totales;
+    private int h_Totales;//h totales trabajadas en el mes
     
     
     public Departament(int salarioDiA, String d_nombre, int h_totales ) {

@@ -13,8 +13,10 @@ public class Regi_Nomina {
             list_datos.add(datos_Trabajador.nombreCompleto());
             list_datos.add(datos_Trabajador.getCedula());
             list_datos.add(String.valueOf(datos_Trabajador.getEdad()));
+            list_datos.add(datos_Trabajador.getCargo());
+            list_datos.add(String.valueOf(datos_Trabajador.bono));
             //departamento
-           
+            
             
         } else {
             System.out.println("No hay datos del trabajador.");
