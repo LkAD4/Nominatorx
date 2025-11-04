@@ -1,10 +1,15 @@
 package Encargado;
+import java.util.Scanner;
 
-public class Encargado {
+public class Encargado  {
+    Scanner input = new Scanner(System.in);
     String nombre;
     String apellido;
     int edad;
     String id;
+    
+
+    
 
 
 
@@ -33,5 +38,8 @@ public class Encargado {
         return nombre + " " + apellido;
     }
 
+
+
     
 }
+    
