@@ -1,8 +1,13 @@
 import java.util.Scanner;
 import Encargado.Encargado;
+import models.Administrador;
+import models.Analista;
 import models.Departament;
+import models.Director;
+import models.Ejecutivo;
 import models.Informe;
 import models.Regi_Nomina;
+import models.Soporte_T;
 import models.Trabajador;
 
 import java.util.ArrayList;
@@ -10,13 +15,20 @@ import java.util.ArrayList;
 public class Core{
     public static void main(String[] args){//inicia el programa
         Scanner input = new Scanner(System.in);//objeto scanner para recibir datos
-        
+        //Lista para comparar departamentos
         ArrayList<String> departamentosFijos = new ArrayList<>();
         departamentosFijos.add("Sistemas");
         departamentosFijos.add("Marketing");
         departamentosFijos.add("RRHH");
         departamentosFijos.add("Finanzas");
         departamentosFijos.add("Ventas"); 
+        //Lista para comparar cargos
+        ArrayList<String> Cargos = new ArrayList<>();
+        Cargos.add("Director");
+        Cargos.add("Administrador");
+        Cargos.add("Analista");
+        Cargos.add("Ejecutivo");
+        Cargos.add("Soporte tecnico"); 
         
         //creamos los departamentos
         Departament sistemas = new Departament(500,"Sistemas",173);
@@ -32,7 +44,7 @@ public class Core{
         System.out.println("Gestor de Nóminas Iniciado.....");
         System.out.println("Ingrese el usuario:");
         String usuario = input.nextLine(); 
-        for (int i = 1; i <= intentos; ) {//bucle de iteraccion para permitir el acceso
+        for (int i = 1; i <= intentos;i++ ) {//bucle de iteraccion para permitir el acceso
             if (usuario.equals("ADMIN")) {
             System.out.println("Ingrese la contraseña:");
             String contraseña = input.nextLine();
@@ -46,7 +58,7 @@ public class Core{
             else {
                 System.out.println("Contraseña incorrecta. Acceso denegado.");
                 System.out.println("Intento " + i + " de " + intentos);
-                i++; 
+               
                 
             }
         } 
@@ -74,11 +86,12 @@ public class Core{
         Encargado encargado = new Encargado(nombre, apellido, id, edad); //creamos un encargado
         System.out.println("Acceso concedido. Bienvenido, " + encargado.nombreCompleto() + ".");
 
-        System.out.println("Bienvenido a NOMINATORX");
+        System.out.println("Bienvenido a NOMINATORX By Lex");
         System.out.println("---------------------");
         System.out.println("MENU DE OPCIONES:");
         System.out.println("1. Generar nomina");
         System.out.println("2. Gestionar Departamentos");
+        System.out.println("3. Salir");
 
         System.out.print("Seleccione una opción: ");
         int opcion = input.nextInt();
@@ -93,6 +106,7 @@ public class Core{
                     int E_Trabajador = 0;
                     String C_Trabajador = "";
                     String D_Trabajador = "";
+                    String CA_trabajador = "";
 
                     // Nombre
                 do { 
@@ -146,11 +160,49 @@ public class Core{
                             c = 0;
                             continue;
                         }
+                        
                         System.out.println("Es correcto el departamento " + D_Trabajador + " ?  (1.SI / 0.NO )");
                         c = input.nextInt();
                         input.nextLine();
                     } while (c == 0);
-                    Trabajador trabajador = new Trabajador(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador);
+
+                     do {
+                        System.out.println("Escriba el cargo del trabajador:");
+                        CA_trabajador = input.next();
+                        if (Cargos.contains(CA_trabajador)) {
+                            System.out.println("Cargo válido.");
+                        } else {
+                            System.out.println("Cargo no válido. Intente de nuevo.");
+                            c = 0;
+                            continue;
+                        }
+                        
+                        System.out.println("Es correcto el Cargo " + CA_trabajador + " ?  (1.SI / 0.NO )");
+                        c = input.nextInt();
+                        input.nextLine();
+                    } while (c == 0);
+                    Trabajador trabajador = new Trabajador(N_Trabajador.toUpperCase(),A_Trabajador,C_Trabajador,D_Trabajador,E_Trabajador,CA_trabajador);
+                    switch (CA_trabajador.toLowerCase()) {
+                        case "director":
+                            trabajador  = new Director(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
+                            
+                        case "analista":
+                            trabajador  = new Analista(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
+
+                        case "soporte t":
+                            trabajador  = new Soporte_T(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
+
+                        case "ejecutivo":
+                            trabajador  = new Ejecutivo(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
+
+                        case "administrador":
+                            trabajador  = new Administrador(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
+
+                        default:
+                            break;
+                    }
+
+                    System.out.println(trabajador.getBono());
                     //Luego de crear el trabajado.
                     int H_Trabajador = 0;
 
@@ -171,8 +223,8 @@ public class Core{
                         System.out.println("Error: El trabajador ha excedido el límite de horas del departamento.");
                         break;
                     }
-                    int salarioTotal = departamento.getSalario() * (H_Trabajador / 8);
-                    System.out.println("Nomina \nTrabajador: " + trabajador.nombreCompleto() + "\nPago total: " + salarioTotal + " USD. \n Perteneciente al departamento de "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario()+ " USD \n Encargado de nómina: "+ encargado.nombreCompleto()+"\nID: "+ encargado.getId());
+                    int salarioTotal = ((departamento.getSalario()  * (H_Trabajador / 8))+ trabajador.getBono());
+                    System.out.println("Nomina \nTrabajador: " + trabajador.nombreCompleto() + "Cargo:" + CA_trabajador + "\nPago total: " + salarioTotal + " USD. \n Perteneciente al departamento de "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario()+ " USD \n Encargado de nómina: "+ encargado.nombreCompleto()+"\nID: "+ encargado.getId());
                     Informe info = new Informe(trabajador);
                     info.crearInforme();
                     
@@ -191,7 +243,7 @@ public class Core{
                     System.out.println("Finanzas: " + Finanzas.getSalario() + " USD");
                     System.out.println("Ventas: " + ventas.getSalario() + " USD");
                     //Limites de horas
-                    System.out.println("Límites de horas mensuales:");
+                    System.out.println("\nLímites de horas mensuales:");
                     System.out.println("Sistemas: " + sistemas.geth_Totales() + " horas");
                     System.out.println("Marketing: " + marketing.geth_Totales() + " horas");
                     System.out.println("RRHH: " + RRHH.geth_Totales() + " horas");
