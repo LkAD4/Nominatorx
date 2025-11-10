@@ -1,17 +1,17 @@
 package models;
 
-public class Trabajador {
-    String t_Nombre;
-    String t_Apellido;
-    private String cedula;
+public class Trabajador extends Persona{
+    
     String cargo;
-    int bono;
+  
     String departamento;
-    int edad;
+    
 
-    public Trabajador(String t_nombre, String t_apellido, String cedula,String Departamento, int edad, String cargo) {
-        this.t_Nombre = t_nombre;
-        this.t_Apellido = t_apellido;
+    public Trabajador(String t_Nombre, String t_Apellido, String cedula, int edad,
+                      String departamento, String cargo) {
+        super(t_Nombre, t_Apellido, cedula, edad);
+        this.t_Nombre = t_Nombre;
+        this.t_Apellido = t_Apellido;
         this.cedula = cedula;
         this.cargo = cargo;
         this.edad = edad;
@@ -46,6 +46,18 @@ public class Trabajador {
         return t_Nombre + " " + t_Apellido;
 
     
+    }
+    public int getPension(){
+        if (edad > 60){
+            return 100;
+        
+        }
+        else {
+            
+            return 0;
+        }
+
+        
     }
     
 

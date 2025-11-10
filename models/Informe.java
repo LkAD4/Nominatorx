@@ -13,22 +13,17 @@ public class Informe {//clase para tener un informe maslimpio al momento de hace
         System.out.println("Datos del trabajador:");
         System.out.println("=====================");
         
-        for (int i = 0; i < nomina.list_datos.size();  ) {
-            
-
-             
-            System.out.println("------------------");
-            System.out.println("Nombre: " + nomina.list_datos.get(i));
-            System.out.println("------------------");
-            System.out.println("Cedula: " + nomina.list_datos.get(i = 1));
-            System.out.println("Edad: " + nomina.list_datos.get(i = 2));
-            System.out.println("Cargo: " + nomina.list_datos.get(i = 3));
-            System.out.println("Bono: " + nomina.list_datos.get(i = 4));
-
-
-            System.out.println("------------------");
-            System.out.println("=====================");
-            i = 5;
-        }
+        if (nomina.list_datos == null || nomina.list_datos.isEmpty()) {
+        System.out.println("No hay datos para mostrar.");
+        return;
     }
-}
+
+    String[] etiquetas = {"Nombre", "Cédula", "Edad", "Cargo", "Bono", "Pensión"};
+
+    for (int i = 0; i < nomina.list_datos.size() && i < etiquetas.length; i++) {
+        System.out.println(etiquetas[i] + ": " + nomina.list_datos.get(i));
+    }
+
+    System.out.println("=====================");
+    }
+    }

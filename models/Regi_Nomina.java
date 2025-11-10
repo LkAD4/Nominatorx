@@ -14,7 +14,8 @@ public class Regi_Nomina {
             list_datos.add(datos_Trabajador.getCedula());
             list_datos.add(String.valueOf(datos_Trabajador.getEdad()));
             list_datos.add(datos_Trabajador.getCargo());
-            list_datos.add(String.valueOf(datos_Trabajador.bono));
+            list_datos.add(String.valueOf(datos_Trabajador.getBono()));
+            list_datos.add(String.valueOf(datos_Trabajador.getPension()));
             //departamento
             
             

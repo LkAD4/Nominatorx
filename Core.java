@@ -9,6 +9,7 @@ import models.Informe;
 import models.Regi_Nomina;
 import models.Soporte_T;
 import models.Trabajador;
+import Encargado.List_fijas;
 
 import java.util.ArrayList;
 
@@ -16,19 +17,7 @@ public class Core{
     public static void main(String[] args){//inicia el programa
         Scanner input = new Scanner(System.in);//objeto scanner para recibir datos
         //Lista para comparar departamentos
-        ArrayList<String> departamentosFijos = new ArrayList<>();
-        departamentosFijos.add("Sistemas");
-        departamentosFijos.add("Marketing");
-        departamentosFijos.add("RRHH");
-        departamentosFijos.add("Finanzas");
-        departamentosFijos.add("Ventas"); 
-        //Lista para comparar cargos
-        ArrayList<String> Cargos = new ArrayList<>();
-        Cargos.add("Director");
-        Cargos.add("Administrador");
-        Cargos.add("Analista");
-        Cargos.add("Ejecutivo");
-        Cargos.add("Soporte tecnico"); 
+       
         
         //creamos los departamentos
         Departament sistemas = new Departament(500,"Sistemas",173);
@@ -44,7 +33,7 @@ public class Core{
         System.out.println("Gestor de Nóminas Iniciado.....");
         System.out.println("Ingrese el usuario:");
         String usuario = input.nextLine(); 
-        for (int i = 1; i <= intentos;i++ ) {//bucle de iteraccion para permitir el acceso
+        for (int i = 1; i <= intentos; ) {//bucle de iteraccion para permitir el acceso
             if (usuario.equals("ADMIN")) {
             System.out.println("Ingrese la contraseña:");
             String contraseña = input.nextLine();
@@ -86,7 +75,7 @@ public class Core{
         Encargado encargado = new Encargado(nombre, apellido, id, edad); //creamos un encargado
         System.out.println("Acceso concedido. Bienvenido, " + encargado.nombreCompleto() + ".");
 
-        System.out.println("Bienvenido a NOMINATORX By Lex");
+        System.out.println("Bienvenido a NOMINATORX prealpha 2.2 By Lex");
         System.out.println("---------------------");
         System.out.println("MENU DE OPCIONES:");
         System.out.println("1. Generar nomina");
@@ -98,10 +87,11 @@ public class Core{
         do {
             switch (opcion) {
                 case 1:
-                    System.out.println("Generando nómina...");
+                    System.out.println("Creando nomina...");
                     // Lógica para generar nómina
                     int c;
                     String N_Trabajador = "";
+                    Encargado.capitalize(N_Trabajador);
                     String A_Trabajador = "";
                     int E_Trabajador = 0;
                     String C_Trabajador = "";
@@ -112,7 +102,7 @@ public class Core{
                 do { 
                     System.out.println("Escriba el nombre del trabajador:");
                     N_Trabajador = input.next();
-                    System.out.println("Es correcto el nombre " + N_Trabajador + " ?  (1.SI / 0.NO )");
+                    System.out.println("Es correcto el nombre " + Encargado.capitalize(N_Trabajador) + " ?  (1.SI / 0.NO )");
                     c = input.nextInt();
                     input.nextLine();
                 } while (c == 0);
@@ -136,6 +126,7 @@ public class Core{
                         System.out.println("Es correcta la edad " + E_Trabajador + " ?  (1.SI / 0.NO )");
                         c = input.nextInt();
                         input.nextLine();
+                        
                     } 
                     while (c == 0);
 
@@ -153,7 +144,7 @@ public class Core{
                     do {
                         System.out.println("Escriba el departamento del trabajador:");
                         D_Trabajador = input.next();
-                        if (departamentosFijos.contains(D_Trabajador)) {
+                        if (List_fijas.departamentosFijos.contains(D_Trabajador)) {
                             System.out.println("Departamento válido.");
                         } else {
                             System.out.println("Departamento no válido. Intente de nuevo.");
@@ -169,7 +160,7 @@ public class Core{
                      do {
                         System.out.println("Escriba el cargo del trabajador:");
                         CA_trabajador = input.next();
-                        if (Cargos.contains(CA_trabajador)) {
+                        if (List_fijas.Cargos.contains(Encargado.capitalize(CA_trabajador))) {
                             System.out.println("Cargo válido.");
                         } else {
                             System.out.println("Cargo no válido. Intente de nuevo.");
@@ -181,28 +172,30 @@ public class Core{
                         c = input.nextInt();
                         input.nextLine();
                     } while (c == 0);
-                    Trabajador trabajador = new Trabajador(N_Trabajador.toUpperCase(),A_Trabajador,C_Trabajador,D_Trabajador,E_Trabajador,CA_trabajador);
+                    Trabajador trabajador = new Trabajador(N_Trabajador.toUpperCase(),A_Trabajador,C_Trabajador,E_Trabajador,D_Trabajador,CA_trabajador);
+
                     switch (CA_trabajador.toLowerCase()) {
                         case "director":
-                            trabajador  = new Director(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
-                            
+                            trabajador  = new Director(N_Trabajador.toUpperCase(),A_Trabajador,C_Trabajador,E_Trabajador,D_Trabajador,CA_trabajador);
+                            break;
                         case "analista":
-                            trabajador  = new Analista(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
-
+                            trabajador  = new Analista(N_Trabajador.toUpperCase(),A_Trabajador,C_Trabajador,E_Trabajador,D_Trabajador,CA_trabajador);
+                            break;
                         case "soporte t":
-                            trabajador  = new Soporte_T(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
-
+                            trabajador  = new Soporte_T(N_Trabajador.toUpperCase(),A_Trabajador,C_Trabajador,E_Trabajador,D_Trabajador,CA_trabajador);
+                            break;
                         case "ejecutivo":
-                            trabajador  = new Ejecutivo(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
-
+                            trabajador  = new Ejecutivo(N_Trabajador.toUpperCase(),A_Trabajador,C_Trabajador,E_Trabajador,D_Trabajador,CA_trabajador);
+                            break;
                         case "administrador":
-                            trabajador  = new Administrador(N_Trabajador, A_Trabajador, C_Trabajador, D_Trabajador, E_Trabajador,CA_trabajador);
-
+                            trabajador  = new Administrador(N_Trabajador.toUpperCase(),A_Trabajador,C_Trabajador,E_Trabajador,D_Trabajador,CA_trabajador);
+                            break;
                         default:
                             break;
                     }
 
                     System.out.println(trabajador.getBono());
+                    System.out.println(trabajador.getPension());
                     //Luego de crear el trabajado.
                     int H_Trabajador = 0;
 
@@ -223,17 +216,24 @@ public class Core{
                         System.out.println("Error: El trabajador ha excedido el límite de horas del departamento.");
                         break;
                     }
-                    int salarioTotal = ((departamento.getSalario()  * (H_Trabajador / 8))+ trabajador.getBono());
-                    System.out.println("Nomina \nTrabajador: " + trabajador.nombreCompleto() + "Cargo:" + CA_trabajador + "\nPago total: " + salarioTotal + " USD. \n Perteneciente al departamento de "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario()+ " USD \n Encargado de nómina: "+ encargado.nombreCompleto()+"\nID: "+ encargado.getId());
+                    int Total = encargado.Calcular_N(H_Trabajador, departamento.getSalario(),trabajador.getBono(),trabajador.getPension());
+                    System.out.println("Nomina \nTrabajador: " + trabajador.nombreCompleto() + "Cargo:" + CA_trabajador + "\nPago total: " + Total + " USD. \n Perteneciente al departamento de "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario()+ " USD \n Encargado de nómina: "+ encargado.nombreCompleto()+"\nID: "+ encargado.getId());
                     Informe info = new Informe(trabajador);
                     info.crearInforme();
+                    System.out.println("Departamento:");
+                System.out.println("==========================");
+                System.out.println("\nDepartamento "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario() +  " USD" + "\nPago total: "    + Total + " USD.");
+                System.out.println("Encargado:");
+                System.out.println("==========================");
+                System.out.println("Encargado de la nomina :" +  encargado.nombreCompleto()+"\nID: "+ encargado.getId());
+
                     
                     break;
                 case 2:
                     System.out.println("Gestionando Departamentos...");
                     // Lógica para gestionar departamentos
                     System.out.println("Departamentos disponibles:");
-                    for (String depto : departamentosFijos) {
+                    for (String depto : List_fijas.departamentosFijos) {
                         System.out.println("- " + depto);
                     }
                     System.out.println("Salarios");//Salarios de los departamentos
