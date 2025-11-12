@@ -10,6 +10,7 @@ import models.Regi_Nomina;
 import models.Soporte_T;
 import models.Trabajador;
 import Encargado.List_fijas;
+import Encargado.GenerarPDF;
 
 import java.util.ArrayList;
 
@@ -219,14 +220,19 @@ public class Core{
                     int Total = encargado.Calcular_N(H_Trabajador, departamento.getSalario(),trabajador.getBono(),trabajador.getPension());
                     System.out.println("Nomina \nTrabajador: " + trabajador.nombreCompleto() + "Cargo:" + CA_trabajador + "\nPago total: " + Total + " USD. \n Perteneciente al departamento de "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario()+ " USD \n Encargado de nómina: "+ encargado.nombreCompleto()+"\nID: "+ encargado.getId());
                     Informe info = new Informe(trabajador);
-                    info.crearInforme();
+                    info.crearInforme(trabajador);
                     System.out.println("Departamento:");
                 System.out.println("==========================");
+                String NText1 = "\nDepartamento "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario() +  " USD" + "\nPago total: "    + Total + " USD.";
                 System.out.println("\nDepartamento "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario() +  " USD" + "\nPago total: "    + Total + " USD.");
+                GenerarPDF pdf = new GenerarPDF(info);
+                String NText2 = ("Encargado:\n\"==========================\nEncargado de la nomina :" +  encargado.nombreCompleto() + 
+                                        "\nID :" + encargado.getId() );
+                pdf.generarNomina(N_Trabajador,NText1,info.crearInforme(trabajador),NText2);
                 System.out.println("Encargado:");
                 System.out.println("==========================");
-                System.out.println("Encargado de la nomina :" +  encargado.nombreCompleto()+"\nID: "+ encargado.getId());
-
+                System.out.println("Encargado de la nomina :" +  encargado.nombreCompleto()+" \nID: "+ encargado.getId());
+                
                     
                     break;
                 case 2:
