@@ -25,10 +25,10 @@ public class Encargado implements operations {
     String getNombre() {
         return nombre;
     }
-    String getApellido() {
+    public String getApellido() {
         return apellido;
     }
-    int getEdad() {
+    public int getEdad() {
         return edad;
     }
 
