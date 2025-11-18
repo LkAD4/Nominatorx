@@ -6,19 +6,17 @@ package Encargado;
 
 // Importaciones corregidas y añadidas}
 
-import com.itextpdf.layout.element.Image; // Para el elemento gráfico
-import com.itextpdf.io.image.ImageData; // Para los datos de la imagen
-import com.itextpdf.io.image.ImageDataFactory; // Para cargar la imagen
-
-import java.io.IOException;
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter; // <-- ¡Esta es la importación CLAVE que faltaba!
+import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Image;
 import com.itextpdf.layout.element.Paragraph;
 import models.Informe;
 
 import java.io.File;
-
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
