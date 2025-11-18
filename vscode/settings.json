@@ -1,0 +1,28 @@
+{
+    "java.project.sourcePaths": [
+        "."
+    ],
+    "java.project.referencedLibraries": [
+        "lib\\openjfx-25.0.1_windows-x64_bin-sdk\\javafx-sdk-25.0.1\\lib\\javafx.controls.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\styled-xml-parser-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\bouncy-castle-connector-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\commons-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\layout-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\bouncy-castle-fips-adapter-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\bouncy-castle-adapter-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\pdfa-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\pdfua-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\io-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\font-asian-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\barcodes-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\slf4j-simple-2.0.17.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\pdftest-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\sign-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\slf4j-api-2.0.17.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\forms-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\kernel-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\hyph-9.3.0.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\flatlaf-3.6.2.jar",
+        "c:\\Users\\Ivam\\Documents\\NetBeansProjects\\NOMINATORX\\lib\\iText-Core-9.3.0-only-jars\\svg-9.3.0.jar"
+    ]
+}
