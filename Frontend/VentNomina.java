@@ -1,11 +1,7 @@
 package Frontend;
 
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.net.URL;
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.Image;
 
 
 import javax.swing.Box;
@@ -61,7 +57,9 @@ public class VentNomina extends JFrame {
             
             JPanel panel = new JPanel();
             panel.add(new JLabel("NOMINA --- Datos del trabajador"));
+
             panel.setPreferredSize(new DimensionUIResource(300, 300));
+            panel.setFont(new Font("Segoe UI", Font.BOLD, 17));
             panel.add(Box.createRigidArea(new Dimension(0, 20)));
                 
            
@@ -76,6 +74,7 @@ Tnombre.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(Tnombre);
 
 JTextField nombre = new JTextField();
+        Tnombre.setFont(new Font("Segoe UI", Font.BOLD, 15));
 nombre.setMaximumSize(new Dimension(258, 20));
 nombre.setAlignmentX(Component.LEFT_ALIGNMENT);
 nombre.setToolTipText("Ingrese el nombre del trabajador");
@@ -87,6 +86,8 @@ panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
 // ======= APELLIDO =======
 JLabel Tapellido = new JLabel("Apellido");
+Tapellido.setPreferredSize(new DimensionUIResource(40, 40));
+        Tapellido.setFont(new Font("Segoe UI", Font.BOLD, 15));
 Tapellido.setAlignmentX(Component.LEFT_ALIGNMENT);
 
 
@@ -103,6 +104,7 @@ panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
 // ======= EDAD =======
 JLabel Tedad = new JLabel("Edad");
+        Tedad.setFont(new Font("Segoe UI", Font.BOLD, 15));
 Tedad.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(Tedad);
 
@@ -118,6 +120,7 @@ panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
 // ======= CEDULA =======
 JLabel Tcedula = new JLabel("Cedula");
+        Tcedula.setFont(new Font("Segoe UI", Font.BOLD, 15));
 Tcedula.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(Tcedula);
 
@@ -154,6 +157,7 @@ panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 // ---------- DEPARTAMENTO ----------
 JLabel labelDepartamento = new JLabel("Departamento");
+labelDepartamento.setFont(new Font("Segoe UI", Font.BOLD, 15));
 labelDepartamento.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(labelDepartamento);
 
@@ -177,6 +181,7 @@ panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
 // ---------- CARGO ----------
 JLabel labelCargo = new JLabel("Cargo");
+labelCargo.setFont(new Font("Segoe UI", Font.BOLD, 15));
 labelCargo.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(labelCargo);
 
@@ -197,13 +202,15 @@ panel.add(boxCargos);
 // espacio grande
 panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
-JLabel Thoras = new JLabel("Horas trabajadas:"); //Horas trabajadas
+JLabel Thoras = new JLabel("Horas trabajadas:");
+Thoras.setFont(new Font("Segoe UI", Font.BOLD, 17));//Horas trabajadas
 Thoras.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(Thoras);
 
 //HORAS
 JTextField horas = new JTextField();
 horas.setMaximumSize(new Dimension(100, 20));
+
 horas.setAlignmentX(Component.LEFT_ALIGNMENT);
 horas.setToolTipText("Ingrese las horas trabajadas (número entero)");
 panel.add(horas);
