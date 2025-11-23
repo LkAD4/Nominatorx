@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Nominatorxx">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/iText-Core-9.3.0-only-jars.zip!/" />
+      <root url="jar://$PROJECT_DIR$/slf4j-api-2.0.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/slf4j-simple-2.0.17.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

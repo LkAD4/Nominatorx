@@ -33,9 +33,11 @@ public class Main  extends JFrame {
             ImageIcon iconEscalado = new ImageIcon(imgingress);
             
             
-            JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 20));
-            panel.add(new JLabel("LOGIN"));
+            JPanel panel = new JPanel();
+            panel.setLayout(null);
+
             panel.setPreferredSize(new DimensionUIResource(30, 30));
+            panel.setBounds(60,80,150,40);
             panel.setBackground(Color.decode("#1D2026"));
             panel.setFont(new Font("Segoe UI", Font.ITALIC,14));
             //Configuracion del boton
@@ -44,9 +46,9 @@ public class Main  extends JFrame {
             entrar.setLayout(null);
             entrar.setBorderPainted(false);
             entrar.setBackground(Color.decode("#020E24"));
-            entrar.setBounds(50, 50, 150, 40);
+            entrar.setBounds(60, 80, 150, 40);
             entrar.setFont(new Font("Segoe UI", Font.BOLD, 12));
-            entrar.setForeground(Color.decode("#9A9FAB"));
+            entrar.setForeground(Color.decode(""));
             entrar.setContentAreaFilled(true);
             entrar.setIcon(iconEscalado);
             entrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -66,7 +68,7 @@ public class Main  extends JFrame {
     entrar.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 
     entrar.addActionListener(e -> {
-    new VentNomina();
+    new Menu();
     vent.dispose(); // abrir nueva ventana
 });
 

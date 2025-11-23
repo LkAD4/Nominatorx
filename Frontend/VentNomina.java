@@ -4,15 +4,7 @@ import java.awt.*;
 import java.net.URL;
 
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
 
 
@@ -65,7 +57,7 @@ public class VentNomina extends JFrame {
            
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
             
-            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
 
 // ======= NOMBRE =======
 JLabel Tnombre = new JLabel("Nombre");
@@ -353,6 +345,42 @@ guardar.addActionListener(e -> {
 
 panel.add(guardar);
 
+        JButton back = new JButton("Volver al menu");//creacion del boton
+        back.setPreferredSize(new DimensionUIResource(100, 40));
+        back.setLayout(null);
+        back.setBorderPainted(false);
+        back.setBackground(Color.decode("#B5B5B5"));
+        back.setBounds(50, 250, 30, 40);
+        back.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        back.setForeground(Color.decode("#000000"));
+        back.setContentAreaFilled(true);
+
+        back.addMouseListener(new java.awt.event.MouseAdapter() {
+            //maldito HOVER
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                back.setBackground(new Color(230, 230, 230)); // color hover
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                back.setBackground(new Color(181, 181, 181)); // color normal
+            }
+        });
+
+
+        back.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+
+        back.addActionListener(e -> {
+            new Menu();
+            this.dispose();
+             // abrir nueva ventana
+        });
+
+
+
+        panel.add(back);
+
 
 
 
@@ -382,7 +410,7 @@ panel.add(guardar);
         
     }
 
-        
-    } 
+
+    }
 
     
