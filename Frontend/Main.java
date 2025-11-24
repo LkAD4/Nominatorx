@@ -11,7 +11,7 @@ public class Main  extends JFrame {
     public static void main(String[] args) {
         try {
 
-
+//mm
     // moved setAppIcon to a static helper below
             // Puedes usar FlatLightLaf, FlatDarkLaf, FlatIntelliJLaf o FlatDarculaLaf
             UIManager.setLookAndFeel(new FlatDarkLaf());
@@ -48,7 +48,7 @@ public class Main  extends JFrame {
             entrar.setBackground(Color.decode("#020E24"));
             entrar.setBounds(60, 80, 150, 40);
             entrar.setFont(new Font("Segoe UI", Font.BOLD, 12));
-            entrar.setForeground(Color.decode(""));
+            entrar.setForeground(Color.decode("#9A9FAB"));
             entrar.setContentAreaFilled(true);
             entrar.setIcon(iconEscalado);
             entrar.addMouseListener(new java.awt.event.MouseAdapter() {

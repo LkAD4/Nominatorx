@@ -211,10 +211,10 @@ panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
 
 // ---------- OBTENER DATOS SELECCIONADOS ----------
-JButton guardar = new JButton("Guardar");
+JButton guardar = new JButton("Generar Nomina");
 
             guardar.setBackground(Color.decode("#0CCC48"));
-            guardar.setBounds(50, 50, 150, 40);
+            guardar.setBounds(50, 50, 200, 40);
             guardar.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
             guardar.setForeground(Color.decode("#063D57"));
             guardar.setContentAreaFilled(true);

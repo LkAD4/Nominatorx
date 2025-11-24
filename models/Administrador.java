@@ -29,7 +29,7 @@ public class Administrador extends Trabajador {
 
     @Override
     public double pagoVac(){
-        return 0.05;  // Pago de vacaciones: 5%
+        return 0.04;  // Pago de vacaciones: 5%
     }
 
     @Override
