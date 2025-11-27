@@ -4,7 +4,7 @@ public class Trabajador extends Persona{
     
     String cargo;
   
-    String departamento;
+    public String departamento;
     
 
     public Trabajador(String t_Nombre, String t_Apellido, String cedula, int edad,

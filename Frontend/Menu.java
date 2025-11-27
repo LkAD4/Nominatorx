@@ -54,12 +54,19 @@ public class Menu extends JFrame {
             //maldito HOVER
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
-                GenerarN.setBackground(new Color(1, 14, 46)); // color hover
+                GenerarN.setBackground(new Color(1, 14, 46));
+                GenerarN.setForeground(Color.decode("#C4F5FF"));
+
+
+                // color hover
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
                 GenerarN.setBackground(new Color(2, 14, 36)); // color normal
+                GenerarN.setForeground(Color.decode("#9A9FAB"));
+
+
             }
         });
 
@@ -77,7 +84,7 @@ public class Menu extends JFrame {
         vent.add(panel);
         vent.setVisible(true);
 
-        //Generar NOMINA
+        //departamentos
         JButton stats = new JButton("Departamentos");//creacion del boton
         stats.setPreferredSize(new DimensionUIResource(100, 40));
         stats.setLayout(null);
@@ -93,11 +100,17 @@ public class Menu extends JFrame {
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
                 stats.setBackground(new Color(1, 14, 46)); // color hover
+
+                stats.setForeground(Color.decode("#C4F5FF"));
+
+
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                stats.setBackground(new Color(2, 14, 36)); // color normal
+                stats.setBackground(new Color(2, 14, 36));
+                // color normal
+                stats.setForeground(Color.decode("#9A9FAB"));
             }
         });
 
@@ -109,6 +122,10 @@ public class Menu extends JFrame {
             vent.dispose(); // abrir nueva ventana
         });
         panel.add(stats);
+
+
+
+
 
 
 

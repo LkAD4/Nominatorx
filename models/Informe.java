@@ -2,11 +2,13 @@ package models;
 
 public class Informe {//clase para tener un informe maslimpio al momento de hacer el GUI
     private final Regi_Nomina nomina;
+    private final Trabajador trabajador;
 
     public Informe(Trabajador trabajador) {
         // El informe crea y gestiona su propio Regi_Nomina (composición)
-        this.nomina = new Regi_Nomina(trabajador, this);
-        
+        this.trabajador = trabajador;
+        this.nomina = new Regi_Nomina(trabajador);
+
     }
 
     public String crearInforme(Trabajador trabajador) {
@@ -42,5 +44,9 @@ public class Informe {//clase para tener un informe maslimpio al momento de hace
         
     
         return informeCompleto.toString();
+    }
+
+    public Trabajador getTrabajador() {
+        return this.trabajador;
     }
     }

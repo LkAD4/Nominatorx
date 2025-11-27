@@ -1,7 +1,7 @@
 package Frontend;
-import Encargado.List_fijas;
-import models.Departament;
 
+import models.Departament;
+import Encargado.GenerarPDF;
 import java.awt.*;
 
 
@@ -56,11 +56,43 @@ public class Departments extends JFrame {
         panel.add(new JLabel("Ventas: " + ventas.geth_Totales() + " horas"));
 
 
+        JButton stas = new JButton("Generar documento");
+        stas.setPreferredSize(new DimensionUIResource(100, 40));
+        stas.setLayout(null);
+        stas.setBorderPainted(false);
+        stas.setBackground(Color.decode("#73021D"));
+        stas.setBounds(50, 200, 30, 40);
+        stas.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        stas.setForeground(Color.decode("#000000"));
+        stas.setContentAreaFilled(true);
+
+        stas.addMouseListener(new java.awt.event.MouseAdapter() {
+            //maldito HOVER
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                stas.setBackground(new Color(186, 7, 7)); // color hover
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                stas.setBackground(new Color(115, 2, 29)); // color normal
+            }
+        });
+
+
+        stas.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+
+
+        stas.addActionListener(e -> {
+             GenerarPDF.generarReporteConfig();
+        });
+
+
         JButton back = new JButton("Volver al menu");//creacion del boton
         back.setPreferredSize(new DimensionUIResource(100, 40));
         back.setLayout(null);
         back.setBorderPainted(false);
-        back.setBackground(Color.decode("#B5B5B5"));
+        back.setBackground(Color.decode("#EDEBEB"));
         back.setBounds(50, 250, 30, 40);
         back.setFont(new Font("Segoe UI", Font.BOLD, 12));
         back.setForeground(Color.decode("#000000"));
@@ -91,6 +123,7 @@ public class Departments extends JFrame {
 
         vent.add(panel);
         panel.add(back);
+        panel.add(stas);
 
         vent.setVisible(true);
         }

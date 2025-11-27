@@ -8,9 +8,10 @@ import javax.swing.*;
 import javax.swing.plaf.DimensionUIResource;
 
 
-
+import Encargado.EstadisticasDepartamentos;
 import Encargado.Encargado;
 import Encargado.GenerarPDF;
+import Encargado.GenerarPayrollStatement;
 import models.Administrador;
 import models.Analista;
 import models.Departament;
@@ -19,11 +20,14 @@ import models.Ejecutivo;
 import models.Informe;
 import models.Soporte_T;
 import models.Trabajador;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class VentNomina extends JFrame {
    
     String N_Trabajador = "";
-                    
+
     String A_Trabajador = "";
     int E_Trabajador = 0;
     String C_Trabajador = "";
@@ -34,7 +38,9 @@ public class VentNomina extends JFrame {
     Departament RRHH = new Departament(300,"RRHH",140);  
     Departament Finanzas = new Departament(560,"Finanzas",160);
     Departament ventas = new Departament(440,"Ventas",122);
-    Encargado encargado = new Encargado("Dr", "House", "ddf", 22);
+    Encargado encargado = new Encargado("ADMIN", "BEADMIN", "AD1", 22);
+
+    EstadisticasDepartamentos estadDept = new EstadisticasDepartamentos();
 
 
     public VentNomina() {
@@ -43,19 +49,25 @@ public class VentNomina extends JFrame {
             setBackground(Color.decode("#152A85"));
             setLocationRelativeTo(null); // centrar
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // no cerrar la app
-            
-            
+
+
             
             
             JPanel panel = new JPanel();
-            panel.add(new JLabel("NOMINA --- Datos del trabajador"));
+            JLabel title = new JLabel();
+            title.setLayout(null);
+            title.setFont(new Font("Segoe UI", Font.BOLD, 19));
+            title.setBounds( 10, 10, 50, 50);
+            title.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+            panel.add(title);
 
             panel.setPreferredSize(new DimensionUIResource(300, 300));
             panel.setFont(new Font("Segoe UI", Font.BOLD, 17));
             panel.add(Box.createRigidArea(new Dimension(0, 20)));
                 
            
-    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+            panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
             
 
 
@@ -145,6 +157,7 @@ String[] cargos = {
 // ---------- PANEL CON BOXLAYOUT ----------
 
 panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setFont(new Font("Segoe UI", Font.BOLD, 17));
 
 
 // ---------- DEPARTAMENTO ----------
@@ -285,10 +298,10 @@ guardar.addActionListener(e -> {
 
 
     JOptionPane.showMessageDialog(null,
-        "datos"+ D_Trabajador);
+        "Nomina Generada");
     System.out.println("Nomina \nTrabajador: " + N_Trabajador+ "Cargo:" + CA_trabajador  + " USD. \n Perteneciente al departamento de "+ D_Trabajador);
     Trabajador trabajador = new Trabajador(N_Trabajador,A_Trabajador,C_Trabajador,Edad_Trabajador,D_Trabajador,CA_trabajador);
-    Encargado encargado = new Encargado("Dr", "House", "ddf", 22);
+    Encargado encargado = new Encargado("ADMIN", "ADMIN", "BEADMIN123", 22);
                     switch (CA_trabajador.toLowerCase()) {
                         case "director":
                             trabajador  = new Director(N_Trabajador,A_Trabajador,C_Trabajador,Edad_Trabajador,D_Trabajador,CA_trabajador);
@@ -337,14 +350,74 @@ guardar.addActionListener(e -> {
                     String NText2 = ("");
                                         
                     //generacion del pdf
-                    GenerarPDF.generarNomina(N_Trabajador,NText1,info.crearInforme(trabajador),NText2);
+
                     System.out.println("----------------------------------------");
                     
+                    GenerarPayrollStatement payroll = new GenerarPayrollStatement(
+                        info, 
+                        departamento.getSalario(),    // Salario diario del departamento
+                        H_Trabajador,                 // Horas trabajadas en el mes
+                        0 , D_Trabajador                         // Días de vacaciones usados
+
+
+                    );
+
+                        estadDept.aumentar(D_Trabajador);
+                    payroll.generarPayroll();
+
+
+
 
 });
 
 panel.add(guardar);
 
+//Stadisticas boton
+        JButton statsE = new JButton(" generar Estadisticas");//creacion del boton
+        statsE.setPreferredSize(new DimensionUIResource(100, 40));
+        statsE.setLayout(null);
+        statsE.setBorderPainted(false);
+        statsE.setBackground(Color.decode("#020E24"));
+        statsE.setBounds(80, 70, 200, 40);
+        statsE.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        statsE.setForeground(Color.decode("#9A9FAB"));
+        statsE.setContentAreaFilled(true);
+
+        statsE.addMouseListener(new java.awt.event.MouseAdapter() {
+            //maldito HOVER
+            @Override
+            public void mouseEntered(java.awt.event.MouseEvent e) {
+                statsE.setBackground(new Color(1, 14, 46)); // color hover
+
+                statsE.setForeground(Color.decode("#C4F5FF"));
+
+
+            }
+
+            @Override
+            public void mouseExited(java.awt.event.MouseEvent e) {
+                statsE.setBackground(new Color(2, 14, 36));
+                // color normal
+                statsE.setForeground(Color.decode("#9A9FAB"));
+            }
+        });
+
+
+        statsE.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+
+        statsE.addActionListener(e -> {
+            Map<String, Integer> conteoDepartamento = estadDept.getContadores();
+            Map<String, Integer> conteoCargo = estadDept.getContadores();
+
+            GenerarPDF.generarReporteGeneral(
+                    encargado.nombreCompleto(),
+                    "info",
+                    conteoDepartamento,
+                    conteoCargo // Este se hace igual pero en otra clase
+            );
+
+        });
+        panel.add(statsE);
         JButton back = new JButton("Volver al menu");//creacion del boton
         back.setPreferredSize(new DimensionUIResource(100, 40));
         back.setLayout(null);
@@ -360,11 +433,13 @@ panel.add(guardar);
             @Override
             public void mouseEntered(java.awt.event.MouseEvent e) {
                 back.setBackground(new Color(230, 230, 230)); // color hover
+
             }
 
             @Override
             public void mouseExited(java.awt.event.MouseEvent e) {
-                back.setBackground(new Color(181, 181, 181)); // color normal
+                back.setBackground(new Color(181, 181, 181));
+                // color normal
             }
         });
 

@@ -55,12 +55,22 @@ public class Main  extends JFrame {
                 //maldito HOVER
          @Override
     public void mouseEntered(java.awt.event.MouseEvent e) {
-        entrar.setBackground(new Color(1, 14, 46)); // color hover
+        entrar.setBackground(new Color(1, 14, 46)); // color hove//
+
+              entrar.setForeground(Color.decode("#C4F5FF"));
+              entrar.setFocusCycleRoot(true);
+
     }
 
     @Override
     public void mouseExited(java.awt.event.MouseEvent e) {
         entrar.setBackground(new Color(2, 14, 36)); // color normal
+
+        entrar.setForeground(null);
+        entrar.setFocusCycleRoot(false);
+       entrar.setForeground(Color.decode("#9A9FAB"));
+
+
     }
 });
 
