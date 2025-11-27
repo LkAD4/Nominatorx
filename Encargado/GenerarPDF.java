@@ -29,72 +29,13 @@ import java.util.Map;
 
 public class GenerarPDF {
 
-    Informe  info;
+
 
     public GenerarPDF(Informe info){
-        this.info = info;
+
     }
 
 
-    public static void generarNomina(String usuario,String text,String info,String text2) {
-        try {
-            //  nombre  del archivo
-
-            String fechaHora = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-            String nombreArchivo = "NOMINA  " + usuario + "_       " + fechaHora + ".pdf";
-
-            // Crear carpeta si no existe
-            new File("Nominas").mkdirs();
-
-            //imagenes del pdf
-            String rutaImagen = "assets/Logo.jpg"; // Asegúrate de que esta ruta sea correcta
-
-            // 2. Carga los datos de la imagen
-            ImageData data = ImageDataFactory.create(rutaImagen);
-
-            // 3. Crea el objeto Image de iText
-            Image logo = new Image(data);
-
-            // Opcional: Ajusta el tamaño de la imagen (manteniendo la proporción)
-            logo.scaleToFit(150, 75); // Ancho máximo de 150, Alto máximo de 75
-
-            // Opcional: Alineación (por ejemplo, centrar la imagen)
-            logo.setHorizontalAlignment(HorizontalAlignment.CENTER);
-
-            //imagenes del pdf
-            String Imagen2 = "assets/Downpage.jpg"; // Asegúrate de que esta ruta sea correcta
-
-            ImageData datos = ImageDataFactory.create(Imagen2);
-            Image logox = new Image(datos);
-            logox.scaleToFit(150, 75);
-            logox.setHorizontalAlignment(HorizontalAlignment.RIGHT);
-
-            // Crear el PDF (archivo dentro de Nominas)
-            PdfWriter writer = new PdfWriter("Nominas/" + nombreArchivo);
-            PdfDocument pdf = new PdfDocument(writer);
-            Document document = new Document(pdf);
-
-            // Encabezado
-            document.add(logo);
-
-            document.add(new Paragraph("Fecha de generación: " +
-                    LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
-            document.add(new Paragraph("\n***INFORME****\n"));
-
-            // Listar operaciones
-            document.add(new Paragraph(info + text + text2));
-
-            document.add(new Paragraph("\nNOMINATORXBYLKA"));
-            document.add(logox);
-
-            // Cerrar documento
-            document.close();
-
-            System.out.println("Reporte consolidado generado: " + nombreArchivo);
-        } catch (IOException e) {
-            System.err.println("Error al crear el archivo PDF: " + e.getMessage());
-            e.printStackTrace();}
-    }
 
 
 
