@@ -2,22 +2,25 @@ package Encargado;
 
 
 
-public interface operations {
-
-    
-
-   
-    
-   
-   
-   
-   
-   
-   //Operaciones de encargado
-   public int Calcular_N(int horas,int salario,int bono,int pension,double benS, double vaca,double salud,double Aporte_P);
+public abstract class operations {
 
 
 
 
-   
+
+
+    public String capitalize(String texto){
+       return texto;
+    }
 }
+
+   
+   
+   
+   
+
+
+
+
+   
+

@@ -4,6 +4,8 @@
  */
 package Encargado;
 
+
+
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.kernel.colors.ColorConstants;
@@ -30,34 +32,26 @@ public class GenerarPayrollStatement {
 
     private static final String LOGO_PATH = "assets/Logo.jpg";
     private static final String NOMINAS_FOLDER = "Nominas/";
-    
+
     private Trabajador trabajador;
     private Informe informe;
     private double salarioDiario;
     private double horasTrabajadas;
-    private double diasVacacionesUsados;
+    private int horasext;
     public String departamento;
 
     // Constructor con Informe (extrae datos del trabajador del informe)
-    public GenerarPayrollStatement(Informe informe, double salarioDiario, 
-                                   double horasTrabajadas, double diasVacacionesUsados,String departamento) {
+    public GenerarPayrollStatement(Informe informe, double salarioDiario,
+                                   double horasTrabajadas, int horasext,String departamento) {
         this.informe = informe;
         this.trabajador = informe.getTrabajador();
         this.salarioDiario = salarioDiario;
         this.horasTrabajadas = horasTrabajadas;
-        this.diasVacacionesUsados = diasVacacionesUsados;
+        this.horasext = horasext;
         this.departamento = departamento;
     }
 
-    // Constructor alternativo sin Informe (para mantener compatibilidad)
-    public GenerarPayrollStatement(Trabajador trabajador, double salarioDiario, 
-                                   double horasTrabajadas, double diasVacacionesUsados) {
-        this.trabajador = trabajador;
-        this.informe = null;
-        this.salarioDiario = salarioDiario;
-        this.horasTrabajadas = horasTrabajadas;
-        this.diasVacacionesUsados = diasVacacionesUsados;
-    }
+
 
     public void generarPayroll() {
         try {
@@ -135,7 +129,7 @@ public class GenerarPayrollStatement {
         document.add(infoTable);
         document.add(new Paragraph("\n"));
     }
-
+ //GANANCIAS EN BRUTO
     private void agregarEarnings(Document document) {
 
         Paragraph titleEarnings = new Paragraph("GANANCIAS ACTUALES")
@@ -153,19 +147,20 @@ public class GenerarPayrollStatement {
 
         double diasTrabajados = horasTrabajadas / 8.0;
         double pagoRegular = diasTrabajados * salarioDiario;
-        double pagoVacaciones = diasVacacionesUsados * salarioDiario;
+        double diasextra = horasext / 8.0;
+        double pagoHorasext = diasextra * salarioDiario;
 
         agregarCeldaDato(earningsTable, "Salario Regular",
                 String.format("%.2f", diasTrabajados),
                 String.format("$%.2f", salarioDiario),
                 String.format("$%.2f", pagoRegular));
 
-        agregarCeldaDato(earningsTable, "Pago de Vacaciones",
-                String.format("%.2f", diasVacacionesUsados),
+        agregarCeldaDato(earningsTable, "Pago de Horas extra",
+                String.format("%.2f", (double) horasext),
                 String.format("$%.2f", salarioDiario),
-                String.format("$%.2f", pagoVacaciones));
+                String.format("$%.2f", pagoHorasext));
 
-        double subtotalEarnings = pagoRegular + pagoVacaciones;
+        double subtotalEarnings = pagoRegular + pagoHorasext;
 
         Paragraph subtotalText = new Paragraph(
                 "SUBTOTAL: $" + String.format("%.2f", subtotalEarnings))
@@ -193,8 +188,8 @@ public class GenerarPayrollStatement {
 
         double diasTrabajados = horasTrabajadas / 8.0;
         double salarioMensual = diasTrabajados * salarioDiario;
-        double pagoVacaciones = diasVacacionesUsados * salarioDiario;
-        double totalEarnings = salarioMensual + pagoVacaciones;
+        double pagoHext = horasext * salarioDiario;
+        double totalEarnings = salarioMensual + pagoHext;
 
         double descuentoSalud = totalEarnings * trabajador.Salud();
         double descuentoPension = totalEarnings * trabajador.getAP();
@@ -218,8 +213,8 @@ public class GenerarPayrollStatement {
 
         double diasTrabajados = horasTrabajadas / 8.0;
         double salarioMensual = diasTrabajados * salarioDiario;
-        double pagoVacaciones = diasVacacionesUsados * salarioDiario;
-        double totalEarnings = salarioMensual + pagoVacaciones;
+        double pagoHext = horasext * salarioDiario;
+        double totalEarnings = salarioMensual + pagoHext;
 
         double totalDeductions = (totalEarnings * trabajador.Salud()) +
                 (totalEarnings * trabajador.getAP());

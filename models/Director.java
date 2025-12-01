@@ -1,24 +1,23 @@
 package models;
 
-public class Director extends Trabajador {
-    
+public class Director extends  Trabajador implements HorasExtra {
     public Director(String t_Nombre, String t_Apellido, String cedula, int edad, String departamento, String cargo) {
         super(t_Nombre, t_Apellido, cedula, edad,departamento,cargo);
-        
+
     }
 
     @Override
-       public int getBono(){
+    public int getBono(){
         return 50;
     }
-     @Override
+    @Override
     public int getPension(){
         if (edad > 60){
             return 180;
-        
+
         }
         else {
-            
+
             return 0;
         }
     }
@@ -42,4 +41,10 @@ public class Director extends Trabajador {
     public double getAP(){
         return 0.04;  // Aporte a pensión: 4% (máximo para directores)
     }
+
+    @Override
+    public int getHoras_Ext() {
+        return 32;
+    }
 }
+

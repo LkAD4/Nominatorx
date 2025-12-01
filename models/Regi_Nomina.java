@@ -10,7 +10,7 @@ import java.util.Map;
 public class Regi_Nomina {
     private final Trabajador datos_Trabajador;
 
-    @SuppressWarnings("unused")
+
 
     public List<String> list_datos = new ArrayList<>(); // ya usado por Informe
 
@@ -33,7 +33,7 @@ public class Regi_Nomina {
             try { list_datos.add(String.valueOf(datos_Trabajador.Salud())); } catch (Exception ignored) {}
             try { list_datos.add(String.valueOf(datos_Trabajador.getAP())); } catch (Exception ignored) {}
 
-            // Registrar globalmente para reportes
+
             synchronized (registroGlobal) {
                 registroGlobal.add(datos_Trabajador);
             }
@@ -61,22 +61,9 @@ public class Regi_Nomina {
         }
         return conteo;
     }
-    public static Map<String, Integer> getConteoPorDepartamento(String depart) {
-        Map<String, Integer> conteo = new HashMap<>();
-        synchronized (registroGlobal) {
-            for (Trabajador t : registroGlobal) {
-                if (t == null) continue;
-                String departamento = (depart != null) ? depart : "Sin departamento";
-                conteo.put(departamento, conteo.getOrDefault(departamento, 0) + 1);
-            }
-        }
-        return conteo;
-    }
 
-    // Limpiar registro (útil en pruebas)
-    public static void limpiarRegistro() {
-        synchronized (registroGlobal) {
-            registroGlobal.clear();
-        }
-    }
+
+
+
 }
+

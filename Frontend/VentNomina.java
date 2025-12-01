@@ -20,22 +20,22 @@ import models.Ejecutivo;
 import models.Informe;
 import models.Soporte_T;
 import models.Trabajador;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class VentNomina extends JFrame {
-   
-    String N_Trabajador = "";
 
-    String A_Trabajador = "";
-    int E_Trabajador = 0;
+    String N_Trabajador = null;
+
+    String A_Trabajador = null;
+
     String C_Trabajador = "";
-    String D_Trabajador = "";
-    String CA_trabajador = "";
+
     Departament sistemas = new Departament(500,"Sistemas",173);
+
     Departament marketing = new Departament(450,"Marketing",125);
-    Departament RRHH = new Departament(300,"RRHH",140);  
+
+    Departament RRHH = new Departament(300,"RRHH",140);
+
     Departament Finanzas = new Departament(560,"Finanzas",160);
     Departament ventas = new Departament(440,"Ventas",122);
     Encargado encargado = new Encargado("ADMIN", "BEADMIN", "AD1", 22);
@@ -45,40 +45,54 @@ public class VentNomina extends JFrame {
 
     public VentNomina() {
             setTitle("Gestor de Nómina");
-            setSize(600,600);
-            setBackground(Color.decode("#152A85"));
+            setSize(600,900);//tamaño de la ventana
+
             setLocationRelativeTo(null); // centrar
             setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // no cerrar la app
 
 
-            
-            
+
+
             JPanel panel = new JPanel();
-            JLabel title = new JLabel();
+            JLabel title = new JLabel("Crear Nomina");
             title.setLayout(null);
             title.setFont(new Font("Segoe UI", Font.BOLD, 19));
-            title.setBounds( 10, 10, 50, 50);
-            title.setAlignmentX(Component.LEFT_ALIGNMENT);
+            title.setBounds( 30, 3, 50, 10);
+
 
             panel.add(title);
-
-            panel.setPreferredSize(new DimensionUIResource(300, 300));
-            panel.setFont(new Font("Segoe UI", Font.BOLD, 17));
+            panel.setBackground(Color.decode("#000000")); // color del panel
+            panel.setPreferredSize(new DimensionUIResource(300, 300)); //tamaño
+            panel.setFont(new Font("Segoe UI", Font.BOLD, 17)); //estilo de  texto
             panel.add(Box.createRigidArea(new Dimension(0, 20)));
-                
-           
+
+
             panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-            
+
 
 
 // ======= NOMBRE =======
-JLabel Tnombre = new JLabel("Nombre");
-Tnombre.setAlignmentX(Component.LEFT_ALIGNMENT);
+        ImageIcon icon = new ImageIcon("assets/LOGINX.jpg");
+        // 2. Escalar la imagen (opcional, pero recomendado para UI)
+        Image img = icon.getImage();
+        Image imgEscalada = img.getScaledInstance(
+                50, // Ancho deseado
+                50, // Alto deseado
+                Image.SCALE_SMOOTH // Algoritmo de escalado de alta calidad
+        );
+        ImageIcon nombreEscalado = new ImageIcon(imgEscalada);
 
+
+
+
+JLabel Tnombre = new JLabel("Nombre",nombreEscalado,JLabel.LEFT);
+Tnombre.setAlignmentX(Component.LEFT_ALIGNMENT);
+Tnombre.setFont(new Font("Segoe UI", Font.BOLD, 15));
 panel.add(Tnombre);
 
+
 JTextField nombre = new JTextField();
-        Tnombre.setFont(new Font("Segoe UI", Font.BOLD, 15));
+
 nombre.setMaximumSize(new Dimension(258, 20));
 nombre.setAlignmentX(Component.LEFT_ALIGNMENT);
 nombre.setToolTipText("Ingrese el nombre del trabajador");
@@ -89,7 +103,17 @@ panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
 
 // ======= APELLIDO =======
-JLabel Tapellido = new JLabel("Apellido");
+        ImageIcon icon2 = new ImageIcon("assets/LOGINX.jpg");
+        // 2. Escalar la imagen (opcional, pero recomendado para UI)
+        Image img2 = icon.getImage();
+        Image imgEscalada2 = img2.getScaledInstance(
+                40, // Ancho deseado
+                40, // Alto deseado
+                Image.SCALE_SMOOTH // Algoritmo de escalado de alta calidad
+        );
+        ImageIcon apellidoEscalado = new ImageIcon(imgEscalada2);
+
+        JLabel Tapellido = new JLabel("Apellido",apellidoEscalado,JLabel.LEFT);
 Tapellido.setPreferredSize(new DimensionUIResource(40, 40));
         Tapellido.setFont(new Font("Segoe UI", Font.BOLD, 15));
 Tapellido.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -107,8 +131,20 @@ panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
 
 // ======= EDAD =======
-JLabel Tedad = new JLabel("Edad");
-        Tedad.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        // ======= APELLIDO =======
+        ImageIcon icon3 = new ImageIcon("assets/CALENDARX.jpg");
+        // 2. Escalar la imagen (opcional, pero recomendado para UI)
+        Image img3 = icon3.getImage();
+        Image imgEscalada3 = img3.getScaledInstance(
+                40, // Ancho deseado
+                40, // Alto deseado
+                Image.SCALE_SMOOTH // Algoritmo de escalado de alta calidad
+        );
+        ImageIcon edadEscalado = new ImageIcon(imgEscalada3);
+
+
+JLabel Tedad = new JLabel("Edad",edadEscalado,JLabel.LEFT);
+Tedad.setFont(new Font("Segoe UI", Font.BOLD, 15));
 Tedad.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(Tedad);
 
@@ -119,12 +155,23 @@ edad.setToolTipText("Solo números. Edad del trabajador.");
 edad.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(edad);
 
-panel.add(Box.createRigidArea(new Dimension(0, 15)));
+panel.add(Box.createRigidArea(new Dimension(0, 5)));
 
 
 // ======= CEDULA =======
-JLabel Tcedula = new JLabel("Cedula");
-        Tcedula.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        // ======= APELLIDO =======
+        ImageIcon icon4 = new ImageIcon("assets/IDX.jpg");
+        // 2. Escalar la imagen (opcional, pero recomendado para UI)
+        Image img4 = icon4.getImage();
+        Image imgEscalada4 = img4.getScaledInstance(
+                40, // Ancho deseado
+                40, // Alto deseado
+                Image.SCALE_SMOOTH // Algoritmo de escalado de alta calidad
+        );
+        ImageIcon cedEscalado = new ImageIcon(imgEscalada4);
+
+JLabel Tcedula = new JLabel("Cedula",cedEscalado,JLabel.LEFT);
+Tcedula.setFont(new Font("Segoe UI", Font.BOLD, 15));
 Tcedula.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(Tcedula);
 
@@ -135,16 +182,16 @@ cedula.setToolTipText("Número de identificación ");
 
 panel.add(cedula);
 
-panel.add(Box.createRigidArea(new Dimension(0, 15)));
+panel.add(Box.createRigidArea(new Dimension(0, 5)));
 
 
 
 
 
-// initialize listas before using it
 
 
-// ---------- DATOS (pueden venir de tu clase List_fijas) ----------
+
+// ---------- DATOS  ----------
 String[] departamentos = {
    "Sistemas", "Marketing", "Ventas","RRHH","Finanzas"
 };
@@ -161,7 +208,17 @@ panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 
 // ---------- DEPARTAMENTO ----------
-JLabel labelDepartamento = new JLabel("Departamento");
+        // ======= APELLIDO =======
+        ImageIcon icon5 = new ImageIcon("assets/DEPARTX.jpg");
+        // 2. Escalar la imagen (opcional, pero recomendado para UI)
+        Image img5 = icon5.getImage();
+        Image imgEscalada5 = img5.getScaledInstance(
+                40, // Ancho deseado
+                40, // Alto deseado
+                Image.SCALE_SMOOTH // Algoritmo de escalado de alta calidad
+        );
+        ImageIcon depEscalado = new ImageIcon(imgEscalada5);
+JLabel labelDepartamento = new JLabel("Departamento",depEscalado,JLabel.LEFT);
 labelDepartamento.setFont(new Font("Segoe UI", Font.BOLD, 15));
 labelDepartamento.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(labelDepartamento);
@@ -181,11 +238,21 @@ boxDepartamentos.setToolTipText("Seleccione el departamento del trabajador");
 panel.add(boxDepartamentos);
 
 // espacio grande
-panel.add(Box.createRigidArea(new Dimension(0, 15)));
+panel.add(Box.createRigidArea(new Dimension(0, 5)));
 
 
 // ---------- CARGO ----------
-JLabel labelCargo = new JLabel("Cargo");
+        // ======= APELLIDO =======
+        ImageIcon icon6 = new ImageIcon("assets/CARGOX.jpg");
+        // 2. Escalar la imagen (opcional, pero recomendado para UI)
+        Image img6 = icon6.getImage();
+        Image imgEscalada6 = img6.getScaledInstance(
+                40, // Ancho deseado
+                40, // Alto deseado
+                Image.SCALE_SMOOTH // Algoritmo de escalado de alta calidad
+        );
+        ImageIcon cargoEscalado = new ImageIcon(imgEscalada6);
+JLabel labelCargo = new JLabel("Cargo",cargoEscalado,JLabel.LEFT);
 labelCargo.setFont(new Font("Segoe UI", Font.BOLD, 15));
 labelCargo.setAlignmentX(Component.LEFT_ALIGNMENT);
 panel.add(labelCargo);
@@ -205,7 +272,7 @@ boxCargos.setToolTipText("Seleccione el cargo del trabajador");
 panel.add(boxCargos);
 
 // espacio grande
-panel.add(Box.createRigidArea(new Dimension(0, 15)));
+panel.add(Box.createRigidArea(new Dimension(0, 8)));
 
 JLabel Thoras = new JLabel("Horas trabajadas:");
 Thoras.setFont(new Font("Segoe UI", Font.BOLD, 17));//Horas trabajadas
@@ -220,13 +287,29 @@ horas.setAlignmentX(Component.LEFT_ALIGNMENT);
 horas.setToolTipText("Ingrese las horas trabajadas (número entero)");
 panel.add(horas);
 
-panel.add(Box.createRigidArea(new Dimension(0, 15)));
+panel.add(Box.createRigidArea(new Dimension(0, 5)));
+
+//HORAS
+        panel.add(Box.createRigidArea(new Dimension(0, 5)));
+
+        JLabel Thorasext = new JLabel("Horas Extras:");
+        Thorasext.setFont(new Font("Segoe UI", Font.BOLD, 17));//Horas trabajadas
+        Thorasext.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panel.add(Thorasext);
+        JTextField horasext = new JTextField();
+        horasext.setMaximumSize(new Dimension(100, 20));
+
+        horasext.setAlignmentX(Component.LEFT_ALIGNMENT);
+        horasext.setToolTipText("Ingrese las horas trabajadas (número entero)");
+        panel.add(horasext);
+
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
 
 
 // ---------- OBTENER DATOS SELECCIONADOS ----------
 JButton guardar = new JButton("Generar Nomina");
 
-            guardar.setBackground(Color.decode("#0CCC48"));
+            guardar.setBackground(Color.decode("#0CCC48"));// color
             guardar.setBounds(50, 50, 200, 40);
             guardar.setFont(new java.awt.Font("Segoe UI", java.awt.Font.BOLD, 12));
             guardar.setForeground(Color.decode("#063D57"));
@@ -249,15 +332,15 @@ guardar.addActionListener(e -> {
 
 
     //Control y verificacion
-    String N_Trabajador = (String) Encargado.capitalize(nombre.getText());
-     if (A_Trabajador == null  ) {
+    N_Trabajador = encargado.capitalize(nombre.getText());
+    if (N_Trabajador == null || N_Trabajador.trim().isEmpty()) {
         JOptionPane.showMessageDialog(null, "Escribe un nombre.");
         return;
     }
 
-    A_Trabajador = (String) Encargado.capitalize(apellido.getText());
-    if (A_Trabajador == null  ) {
-        JOptionPane.showMessageDialog(null, "Escribe un Apellido.");
+    A_Trabajador = encargado.capitalize(apellido.getText());
+    if (A_Trabajador == null || A_Trabajador.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Escribe un apellido.");
         return;
     }
     int Edad_Trabajador =  Integer.parseInt(edad.getText()) ;
@@ -272,19 +355,38 @@ guardar.addActionListener(e -> {
     }
 
 
-    
+
     String D_Trabajador = (String) boxDepartamentos.getSelectedItem();
     String CA_trabajador = (String) boxCargos.getSelectedItem();
-    
-    
 
-   
+
+
+
     if (D_Trabajador == null || CA_trabajador == null ) {
         JOptionPane.showMessageDialog(null, "Debe seleccionar ambos campos.");
         return;
     }
+    Departament departamento = null;
+    switch(D_Trabajador) {
+        case "Sistemas": departamento = sistemas; break;
+        case "Marketing": departamento = marketing; break;
+        case "RRHH": departamento = RRHH; break;
+        case "Finanzas": departamento = Finanzas; break;
+        case "Ventas": departamento = ventas; break;
+    }
+    int H_Trabajador = 0;
+    H_Trabajador = Integer.parseInt(horas.getText());
 
+    if (H_Trabajador > departamento.geth_Totales()) {
+        JOptionPane.showMessageDialog(null, "Has excedido el limite de horas."+ departamento.geth_Totales());
+        return;
+    }
+    int Hext_trabajador = 0;
+    Hext_trabajador = Integer.parseInt(horasext.getText());
+    if (Hext_trabajador > 40){
+        JOptionPane.showMessageDialog(null, "Has excedido el limite de horas extra."+ 40);
 
+    }
 
 
 
@@ -300,6 +402,7 @@ guardar.addActionListener(e -> {
     JOptionPane.showMessageDialog(null,
         "Nomina Generada");
     System.out.println("Nomina \nTrabajador: " + N_Trabajador+ "Cargo:" + CA_trabajador  + " USD. \n Perteneciente al departamento de "+ D_Trabajador);
+
     Trabajador trabajador = new Trabajador(N_Trabajador,A_Trabajador,C_Trabajador,Edad_Trabajador,D_Trabajador,CA_trabajador);
     Encargado encargado = new Encargado("ADMIN", "ADMIN", "BEADMIN123", 22);
                     switch (CA_trabajador.toLowerCase()) {
@@ -322,43 +425,27 @@ guardar.addActionListener(e -> {
                             break;
                     }
                     //Luego de crear el trabajado.
-                    int H_Trabajador = 0;
+                    //creamos la variable que guardalas horas
 
                     // Get the corresponding department object
-                    Departament departamento = null;
-                    switch(D_Trabajador) {
-                        case "Sistemas": departamento = sistemas; break;
-                        case "Marketing": departamento = marketing; break;
-                        case "RRHH": departamento = RRHH; break;
-                        case "Finanzas": departamento = Finanzas; break;
-                        case "Ventas": departamento = ventas; break;
-                    }
 
-                    System.out.println("cantidad de horas trabajadas en el mes:");
-                    H_Trabajador = Integer.parseInt(horas.getText());
-                    
-                    while (H_Trabajador > departamento.geth_Totales()) {
-                        System.out.println("Error: El trabajador ha excedido el límite de horas del departamento.");
-                        break;
-                    }
+
+
+
                     //CALCULO Y CREACION DE EL INFORME
-                    int Total = encargado.Calcular_N(H_Trabajador, departamento.getSalario(),trabajador.getBono(),trabajador.getPension(),trabajador.benSocial(), trabajador.pagoVac(),trabajador.Salud(),trabajador.getAP());
-                    System.out.println("Nomina \nTrabajador: " + trabajador.nombreCompleto() + "Cargo:" + CA_trabajador + "\nPago total: " + Total + " USD. \n Perteneciente al departamento de "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario()+ " USD \n Encargado de nómina: "+ encargado.nombreCompleto()+"\nID: "+ encargado.getId());
                     Informe info = new Informe(trabajador);
                     System.out.print(info.crearInforme(trabajador));
-                    String NText1 = "\nDepartamento "+ D_Trabajador+ "\nHoras trabajadas: "+ H_Trabajador+ "\nSalario por dia: "+ departamento.getSalario() +  " USD" + "\nPago total: "    + Total + " USD.";
-                    String NText2 = ("");
-                                        
+
+
                     //generacion del pdf
 
                     System.out.println("----------------------------------------");
-                    
+
                     GenerarPayrollStatement payroll = new GenerarPayrollStatement(
-                        info, 
+                        info,
                         departamento.getSalario(),    // Salario diario del departamento
                         H_Trabajador,                 // Horas trabajadas en el mes
-                        0 , D_Trabajador                         // Días de vacaciones usados
-
+                        Hext_trabajador , D_Trabajador                         // Días de vacaciones usados
 
                     );
 
@@ -371,7 +458,7 @@ guardar.addActionListener(e -> {
 });
 
 panel.add(guardar);
-
+panel.add(Box.createRigidArea(new Dimension(0, 5)));
 //Stadisticas boton
         JButton statsE = new JButton(" generar Estadisticas");//creacion del boton
         statsE.setPreferredSize(new DimensionUIResource(100, 40));
@@ -418,6 +505,7 @@ panel.add(guardar);
 
         });
         panel.add(statsE);
+        panel.add(Box.createRigidArea(new Dimension(0, 15)));
         JButton back = new JButton("Volver al menu");//creacion del boton
         back.setPreferredSize(new DimensionUIResource(100, 40));
         back.setLayout(null);
@@ -460,9 +548,9 @@ panel.add(guardar);
 
 
 
-            
 
-                
+
+
 
 
                 add(panel);
@@ -472,20 +560,20 @@ panel.add(guardar);
         // La ruta debe ser relativa al classpath (generalmente la carpeta src o el JAR)
         // Sustituye "app_icon.png" por el nombre de tu archivo.
         URL iconURL = Main.class.getResource("/assets/Downpage.jpg");
-        
+
         if (iconURL != null) {
             // Carga la imagen usando la utilidad Toolkit
             Image icon = Toolkit.getDefaultToolkit().getImage(iconURL);
-            
+
             // Establece el icono del JFrame
             frame.setIconImage(icon);
         } else {
             System.err.println("Advertencia: No se encontró el archivo del icono de la aplicación.");
         }
-        
-    }
-
 
     }
 
-    
+
+    }
+
+

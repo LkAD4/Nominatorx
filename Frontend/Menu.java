@@ -17,7 +17,7 @@ public class Menu extends JFrame {
         vent.setLocationRelativeTo(null);
 
 
-        vent.setBackground(Color.decode("#1D2026"));
+        vent.setBackground(Color.decode("#000000"));
         vent.setLocationRelativeTo(null); // centrar
         vent.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // no cerrar la app
 
@@ -27,12 +27,46 @@ public class Menu extends JFrame {
         panel.setPreferredSize(new DimensionUIResource(300, 300));
         panel.setLayout(null);
         panel.setFont(new Font("Segoe UI", Font.BOLD, 17));
+        panel.setBackground(Color.decode("#000000"));
         JLabel menutxt = new JLabel("MENU");
         menutxt.setLayout(null);
         menutxt.setBounds(60, 7, 150, 40);
         menutxt.setFont(new Font("Segoe UI", Font.BOLD, 14));
 
         panel.add(menutxt);
+
+        ImageIcon icon = new ImageIcon("assets/FOLDERX.jpg"); // Usa la ruta correcta (e.g., assets/Logo.jpg)
+
+// 2. Escalar la imagen (opcional, pero recomendado para UI)
+        Image img = icon.getImage();
+        Image imgEscalada = img.getScaledInstance(
+                50, // Ancho deseado
+                50, // Alto deseado
+                Image.SCALE_SMOOTH // Algoritmo de escalado de alta calidad
+        );
+        ImageIcon folderxEscalado = new ImageIcon(imgEscalada);
+        JLabel folderxImagen = new JLabel(folderxEscalado);
+
+
+        folderxImagen.setBounds(190, 80, 60, 60);
+
+        panel.add(folderxImagen);
+
+        ImageIcon icon2 = new ImageIcon("assets/DEPX.jpg");
+        // 2. Escalar la imagen (opcional, pero recomendado para UI)
+        Image img2 = icon2.getImage();
+        Image imgEscalada2 = img2.getScaledInstance(
+                50, // Ancho deseado
+                50, // Alto deseado
+                Image.SCALE_SMOOTH // Algoritmo de escalado de alta calidad
+        );
+        ImageIcon depxEscalado = new ImageIcon(imgEscalada2);
+        JLabel depxImagen = new JLabel(depxEscalado);
+
+
+        depxImagen.setBounds(210, 160, 30, 30);
+
+        panel.add(depxImagen);
 
 
 

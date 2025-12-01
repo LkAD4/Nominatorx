@@ -31,9 +31,6 @@ public class GenerarPDF {
 
 
 
-    public GenerarPDF(Informe info){
-
-    }
 
 
 

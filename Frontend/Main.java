@@ -26,20 +26,39 @@ public class Main  extends JFrame {
             vent.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             vent.setLocationRelativeTo(null);       // Centrar
 
-            //assets config
-            ImageIcon icon = new ImageIcon("NOMINATORX/assets/ingresar.png");
+            ImageIcon icon = new ImageIcon("assets/LOGINX.jpg"); // Usa la ruta correcta (e.g., assets/Logo.jpg)
 
-            Image imgingress = icon.getImage().getScaledInstance(24, 24, Image.SCALE_SMOOTH);
-            ImageIcon iconEscalado = new ImageIcon(imgingress);
-            
-            
-            JPanel panel = new JPanel();
+// 2. Escalar la imagen (opcional, pero recomendado para UI)
+            Image img = icon.getImage();
+            Image imgEscalada = img.getScaledInstance(
+                    50, // Ancho deseado
+                    50, // Alto deseado
+                    Image.SCALE_SMOOTH // Algoritmo de escalado de alta calidad
+            );
+            ImageIcon iconoEscalado = new ImageIcon(imgEscalada);
+            JLabel labelImagen = new JLabel(iconoEscalado);
+
+
+            labelImagen.setBounds(100, -3, 70, 70);
+
+
+
+
+
+
+
+            JPanel panel = new JPanel(new FlowLayout(FlowLayout.CENTER));
             panel.setLayout(null);
 
             panel.setPreferredSize(new DimensionUIResource(30, 30));
             panel.setBounds(60,80,150,40);
-            panel.setBackground(Color.decode("#1D2026"));
-            panel.setFont(new Font("Segoe UI", Font.ITALIC,14));
+            panel.setBackground(Color.decode("#000000"));
+            panel.add(labelImagen);
+
+
+
+
+
             //Configuracion del boton
             JButton entrar = new JButton("Ingresar");//creacion del boton
             entrar.setPreferredSize(new DimensionUIResource(80, 40));
@@ -50,7 +69,7 @@ public class Main  extends JFrame {
             entrar.setFont(new Font("Segoe UI", Font.BOLD, 12));
             entrar.setForeground(Color.decode("#9A9FAB"));
             entrar.setContentAreaFilled(true);
-            entrar.setIcon(iconEscalado);
+
             entrar.addMouseListener(new java.awt.event.MouseAdapter() {
                 //maldito HOVER
          @Override
@@ -84,20 +103,22 @@ public class Main  extends JFrame {
 
 
 
-            
+
 
 
 
             panel.add(entrar);
 
-            
-            
+
+
+
+
             vent.add(panel);
             vent.setVisible(true);
             vent.add(panel);
             setAppIcon(vent);
             vent.setVisible(true);
-            
+
         });
     }
             

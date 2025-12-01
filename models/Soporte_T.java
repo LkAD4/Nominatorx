@@ -1,6 +1,6 @@
 package models;
 
-public class Soporte_T extends Trabajador {
+public class Soporte_T extends Trabajador implements HorasExtra {
       public Soporte_T(String t_Nombre, String t_Apellido, String cedula, int edad, String departamento, String cargo) {
         super(t_Nombre, t_Apellido, cedula, edad,departamento,cargo);
         
@@ -39,6 +39,11 @@ public class Soporte_T extends Trabajador {
 
     @Override
     public double getAP(){
-        return 0.02;  // Aporte a pensión: 2%
+        return 0.02;  // Aporte a pensión: 2
+
+        }
+    @Override
+    public int getHoras_Ext() {
+        return 35;
     }
 }

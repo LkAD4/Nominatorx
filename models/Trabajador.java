@@ -1,6 +1,6 @@
 package models;
 
-public class Trabajador extends Persona{
+public class Trabajador extends Persona implements HorasExtra{
     
     String cargo;
   
@@ -52,12 +52,13 @@ public class Trabajador extends Persona{
             return 100;
         
         }
+
+
         else {
             
             return 0;
         }
 
-        
     }
     public double benSocial(){
         return 0.15; // 15% por defecto
@@ -77,9 +78,11 @@ public class Trabajador extends Persona{
     public double getAP(){
         return 0.10; // 10% por defecto
     }
-    
 
-    
+    @Override
+    public int getHoras_Ext() {
+        return 0;
     }
+}
 
     
