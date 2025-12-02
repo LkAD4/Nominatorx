@@ -4,17 +4,15 @@ public class Trabajador extends Persona implements HorasExtra{
     
     String cargo;
   
-    public String departamento;
+    private String departamento;
     
 
     public Trabajador(String t_Nombre, String t_Apellido, String cedula, int edad,
                       String departamento, String cargo) {
         super(t_Nombre, t_Apellido, cedula, edad);
-        this.t_Nombre = t_Nombre;
-        this.t_Apellido = t_Apellido;
-        this.cedula = cedula;
+        this.departamento = departamento;
         this.cargo = cargo;
-        this.edad = edad;
+
         
        
     }

@@ -1,10 +1,10 @@
 package models;
 
 public class Persona {
-    String t_Nombre;
-    String t_Apellido;
-    String cedula;
-    int edad;
+    public String t_Nombre;
+    public String t_Apellido;
+    public String cedula;
+    public int edad;
 
 
 public Persona(String t_Nombre, String t_Apellido, String cedula, int edad) {
